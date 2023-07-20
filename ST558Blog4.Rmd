@@ -1,0 +1,28 @@
+---
+title: "ST558Blog4"
+author: "Landon Batts"
+date: "2023-07-20"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Blog 4: Machine Learning Recap
+My favorite method of using machine learning to fit models to data involved using the caret package. This is because it is so flexible and can fit 238 different kinds of models within a single function. I personally enjoyed doing linear models on to data to get a grasp of how variables directly impact the size of another. I will now fit a linear model on the built in iris data set to investigate how sepal width/length as well as petal width and plant species impact petal width by training the data set with 80% of the data and then fitting a linear model.
+```{r}
+library(caret)
+set.seed(111)
+trainIndex <- createDataPartition(iris$Sepal.Length, p = 0.8, list = FALSE)
+irisTrain <- iris[trainIndex, ]
+irisTest <- iris[-trainIndex, ]
+
+fit <- train(Petal.Length ~ ., data = irisTrain,
+method = "lm",
+preProcess = c("center", "scale"),
+trControl = trainControl(method = "cv", number = 10))
+fit
+#The very high R squared means this was a good model
+```
+

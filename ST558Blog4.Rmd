@@ -2,7 +2,7 @@
 title: "ST558Blog4"
 author: "Landon Batts"
 date: "2023-07-20"
-output: html_document
+output: github_document
 ---
 
 ```{r setup, include=FALSE}
